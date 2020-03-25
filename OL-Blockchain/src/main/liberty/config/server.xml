@@ -12,6 +12,7 @@
 	
   <variable name="default.http.port" defaultValue="9080"/>
   <variable name="default.https.port" defaultValue="9443"/>
+  <variable name="app.context.root" defaultValue="ol-blockchain"/>
   
   <!-- tag::httpEndpoint[] -->
   <!--  <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
@@ -22,6 +23,7 @@
   <keyStore id="defaultKeyStore" location="key.jks" type="jks" password="mpKeystore"/>
   
   <!-- tag::webApplication[] -->
-  <webApplication location="guide-rest-intro.war" contextRoot="${app.context.root}"/>
+  <!-- <webApplication location="guide-rest-intro.war" contextRoot="${app.context.root}"/> -->
+  <webApplication location="ol-blockchain.war" contextRoot="${app.context.root}"/>
   <!-- end::webApplication[] -->
 </server>
