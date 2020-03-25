@@ -1,3 +1,8 @@
+/**
+* @author  Thomas Jennings
+* @since   2020-03-25
+*/
+
 package sample.hyperledger.blockchain.communication;
 
 import java.nio.file.Path;
@@ -22,6 +27,7 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import sample.hyperledger.blockchain.model.*;
 
 @javax.ws.rs.Path("Resources")
+
 
 @ApplicationScoped
 public class Resources {
@@ -196,32 +202,41 @@ public class Resources {
 			Path walletPath = Paths.get("wallet");
 			Wallet wallet = Wallet.createFileSystemWallet(walletPath);
 			
+			String current = new java.io.File( "." ).getCanonicalPath();
+	        System.out.println("Current dir:"+current);
+	        
 			// load a CCP
 			//expecting the connect profile json file; export the Connection Profile from the
 			//fabric gateway and add to the default server location 
 			Path networkConfigPath = Paths.get("1-Org-Local-Fabric-Org1_connection.json");
-			
+			System.out.println("networkConfigPath found"); 
 			Gateway.Builder builder = Gateway.createBuilder();
 			
 			//expecting wallet directory within the default server location
 			//wallet exported from Fabric wallets Org 1
 			builder.identity(wallet, "org1Admin").networkConfig(networkConfigPath).discovery(true);
+			System.out.println("Wallet found"); 
 			try (Gateway gateway = builder.connect()) {
 				
 				// get the network and contract
 				Network network = gateway.getNetwork("mychannel");
+				System.out.println("gateway.getNetwork done"); 
 				Contract contract = network.getContract("fabcar");
+				System.out.println("contract.getContract done"); 
 				result = contract.evaluateTransaction("queryAllCars");
+				System.out.println("got result"); 
 				outputString = new String(result);
 				passedOutput = "Queried all Cars Successfully. \nCars are:\n " + outputString;	
 				return passedOutput;
 			}
 			catch (Exception e){
+				System.out.println("Unable to get network/contract and execute query"); 
 				throw new javax.ws.rs.ServiceUnavailableException();
 			}
 		} 
 		catch (Exception e2) 
 		{
+			System.out.println("Unable to find config or wallet"); 
 			throw new javax.ws.rs.ServiceUnavailableException();
 		}
 	}
