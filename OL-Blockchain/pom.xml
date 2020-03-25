@@ -27,7 +27,7 @@
         <liberty.var.default.https.port>9443</liberty.var.default.https.port>
         <!-- end::defaultHttpsPort[] -->
         <!-- tag::appContextRoot[] -->
-        <liberty.var.app.context.root>LibertyProject</liberty.var.app.context.root>
+        <liberty.var.app.context.root>${project.artifactId}</liberty.var.app.context.root>
         <!-- end::appContextRoot[] -->
     </properties>
 
