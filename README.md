@@ -35,13 +35,13 @@ Open Liberty is a Java application server. Put it simply, it hosts Java applicat
 
 * [Start up Open Liberty server](#6.-Start-up-the-Open-Liberty-Server)
 
-* [Test that the server is running](#7.-Test-that-the-server-is-running-for-yourself:)
+* [Query all items from the ledger](#7.-Query-what-is-already-on-the-ledger:)
 
-* [Query all items from the ledger](#8.-Query-what-is-already-on-the-ledger:)
+* [Query specific items from the ledger](#8.-Query-specific-car-on-the-ledger:)
 
-* [Query specific items from the ledger](#9.-Query-specific-car-on-the-ledger:)
+* [Add Cars to the ledger.](#9.-Add-a-car-to-the-ledger:)
 
-* [Add Cars to the ledger.](#10.-Add-a-car-to-the-ledger:)
+* [10 Update owner of Car in Ledger](#10.-Update-owner-of-Car-in-Ledger)
 
 * [Stop the Open Liberty server](#11.-Stop-the-Open-Liberty-Server)
 
@@ -104,11 +104,11 @@ For Open Liberty to communicate to the Blockchain Network, Hyperledger Fabric ha
 
 Export the `Local Fabric Gateways` to do this right click on `1 org local fabric - org 1` and export and click Export connection profile. The `finder` window will open and save the `json` file as `1-Org-Local-Fabric-Org1_connection.json` in the `target/liberty/wlp/usr/servers/defaultServer` directory.
 
-Export the `Fabric Wallets` by clicking on the `1 Org Local Fabric - Orderer Wallet` and right clicking the Export Wallet. Save the file as `Local-Fabric-Org1_connection.json` in the `target/liberty/wlp/usr/servers/defaultServer` directory.
+Export the `Fabric Wallets` by clicking on the `1 Org Local Fabric - Orderer Wallet` and right clicking the Export Wallet. Save the folder as `wallet` in the `target/liberty/wlp/usr/servers/defaultServer` directory.
 
 ## 6. Start up the Open Liberty Server
 
-As we installed the `Dev Tool` for Open Liberty click on the `Liberty Dev Dashboard` icon and the extension will display the project. As the `artifact-Id` specified in the `pom.xml` where our server retrieves the dependincies for the server to run, it is called `application-server` 
+As we installed the `Dev Tool` for Open Liberty click on the `Liberty Dev Dashboard` icon and the extension will display the project. As the `artifact-Id` specified in the `pom.xml` where our server retrieves the dependincies for the server to run, it is called `ol-blockchainv` 
 
 <img src="images/application-server.png" alt="drawing" width="400">
 
@@ -118,20 +118,29 @@ Right click on `application-server` and hit `Start`. This will start the applica
 
 The server has started in `Development mode` meaning it will show the command line and if you hit `enter` it will run tests onto the Server on demand.
 
-## 7. Test that the server is running for yourself:
 
-Open up a browser of your choice, Chrome is usually best and test out a basic `Hello World` end point and see if it returns anything. The server is running on your machine which means that it is hosted locally: `http://localhost:9080/LibertyProject/System/helloworld`
+## 7. Query what is already on the ledger:
+
+Open Liberty uses Microprofile and one of the features we are showing off is MicroProfile Open API. Providing a GUI and buttons, means there is no need for the command line anymore to execute HTTP Methods such as POST, GET and PUT! In the example you will use all three.
+
+Open up a web-browser such as Chrome, and go to:
+
+`http://localhost:9080/openapi/ui/` 
+
+This will display all the possible operations you can do to the blockchain network. 
+
+The OpenAPI feature shows off which HTTP response is being showcased. Quering all cars on the ledger is a `GET` request. 
+
+<img src="images/openAPIUI.png" alt="drawing" width="200">
 
 
-## 8. Query what is already on the ledger:
+If you are keen you can see the output on the terminal window in VS Code, where its the same output. This is useful to see if it hasn't worked you can see the `stack trace` with an error on why it hasnt worked.
 
-When you spun up the The blockchain network from VS Code, it had  cars already on the Blockchain Ledger and you can view them by hitting the `QueryCar/AllCars` endpoint:
+Navigate to `GET /System​/Resources​/Cars Returns all cars`, 
 
-`http://localhost:9080/LibertyProject/System/QueryCar/AllCars`
+`Try it out` 
 
-If you are keen you can see the output on the terminal window in VS Code, where its the same output. This is useful to see if it hasn't worked and I have printed the `stack trace` out for you.
-
-If it hasn't worked it will return back with `Failed.` onto the web browser.
+It will send a request to the Ledger and return back all cars.
 
 Successful response should look like:
 
@@ -141,30 +150,47 @@ Cars:
 [{"Key":"CAR0","Record":{"make":"Toyota","model":"Prius","colour":"blue","owner":"Tomoko"}}]
 ```
 
-## 9. Query specific car on the ledger:
+## 8. Query specific car on the ledger:
 
-As you can see, there is an ID for each item on the Ledger. This is very useful if you want to query specific items on the ledger. To Query specific cars on the ledger. You can query by `CarByKeyID`.
-For example query `CAR10` and see the details of it:
+As you can see, there is an ID for each item on the Ledger. This is very useful if you want to query specific items on the ledger. To Query specific cars on the ledger. 
 
-`http://localhost:9080/LibertyProject/System/QueryCar/CarByKeyID?Key=CAR10`
+On the OpenAPI UI try out 
+
+`GET /System​/Resources​/Car Returns an individual car by key`
+
+<img src="images/CarByKey.png" alt="drawing" width="200">
+
 
 ```json
 Queried car Successfully. 
 Key = CAR5
 Details = {"make":"Peugeot","model":"205","colour":"purple","owner":"Michel"}
 ```
-You can Query any car on the ledger by changing the ID for the Key:
+You can Query any car on the ledger by changing the ID
 
-`http://localhost:9080/LibertyProject/System/QueryCar/CarByKeyID?Key=<ID>`
+## 9. Add a car to the ledger:
 
+Navigate to 
 
-## 10. Add a car to the ledger:
+`POST /System​/Resources​/Car Add a car to the ledger`
 
-Open Liberty uses Microprofile and one of the features we are showing off is MicroProfile Open API. This is a feature where you can make POST requests to the Ledger, to add cars. Providing a GUI and buttons, means there is no need for the command line anymore!
+ click on `Try it out`. 
 
-Navigate to `http://localhost:9080/openapi/ui/#/default/addCar` and click on `Try it out`. You will be able to add data to the field. Feel free to put anything into your blockchain network.
+Fill in the `example schema` in with values. 
 
-Once you have added a car, you can easily query that car by the ID you were given.
+<img src="images/POST.png" alt="drawing" width="200">
+
+## 10. Update owner of Car in Ledger:
+
+Navigate to 
+
+`PUT /System​/Resources​/Car Update owner of a car in the ledger`
+
+ click on `Try it out`. 
+
+Fill in the `example schema` in with values. 
+
+<img src="images/PUT.png" alt="drawing" width="200">
 
 ## 11. Stop the Open Liberty Server
 
