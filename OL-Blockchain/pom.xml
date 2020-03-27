@@ -83,7 +83,7 @@
         <dependency>
          	<groupId>org.hyperledger.fabric</groupId>
          	<artifactId>fabric-gateway-java</artifactId>
-         	<version>1.4.1-SNAPSHOT</version>
+         	<version>1.4.1</version>
         </dependency>
         <dependency>
          	<groupId>org.assertj</groupId>
