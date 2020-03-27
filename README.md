@@ -173,7 +173,7 @@ ii. Export the `Fabric Wallets`
 
 Click on `1 Org Local Fabric - Orderer Wallet` and right click Export Wallet. 
 
-<img src="images/export-fab-gateway.png" alt="drawing" width="400">
+<img src="images/export-fab-wallet.png" alt="drawing" width="400">
 
 iii. Save the folder as `wallet` in `Open-Liberty-Blockchain/OL-Blockchain/target/liberty/wlp/usr/servers/defaultServer` directory.
 
