@@ -1,6 +1,6 @@
 # Open Liberty Blockchain Client
 
-This tutorial introduces Open Liberty, a light weight open source application server making REST requests to a blockchain network. You’ll discover exactly what a blockchain is by implementing a local blockchain network from scratch using the VS Code Blockchain extension, as well as starting the Open Liberty server all from VS code.
+This tutorial introduces Open Liberty, a lightweight open source application server making REST requests to a blockchain network. You’ll discover exactly what a blockchain is by implementing a local blockchain network from scratch using the VS Code Blockchain extension, as well as starting the Open Liberty server all from VS code.
 
 You’ll be able to hit endpoints for different functions from the Open Liberty server, and the blockchain network will return a response to the web browser. Experiencing how easy it is to start up a Blockchain Network as well as see how fast Open Liberty starts up as an application server and see some of the features included in Open Liberty for free!
 
@@ -19,109 +19,177 @@ In our instance, we are using cars, and on our ledger we are going to make trans
 
 ## What is "Open Liberty"?
 
-Open Liberty is a Java application server. Put it simply, it hosts Java applications which you can access on a web browser. This is lightweight, free and allows you to make your own Java applications that you want to put on the web. The benefit of Open Liberty is you can have as much or as little as you want in terms of additional features on your web server. In terms of popularity its predecessor WebSphere Application Server, 20071 companies use it according to [enlyfit.](https://enlyft.com/tech/products/ibm-websphere-application-server)
+Open Liberty is the most flexible server runtime.
+Open Liberty provides developers with proven Java EE 8 technology and the latest Eclipse MicroProfile™ capabilities for building microservices. You can build cloud-native apps and microservices and it has never been more efficient. You only have to run what you need. 
+You can find out more [openliberty.io](https://openliberty.io/)
 
 ## Steps
 
-* [Get the Dev Tools](#1.-Get-the-Dev-Tools)
+* Get the Dev Tools
 
-* [Add local fabric environment and start up Blockchain](#2.-Add-local-fabric-environment-and-start-up-Blockchain)
+* Add the Open Liberty client into VS code
 
-* [Get the Fabcar sample smart contract](#2.-Get-the-Fabcar-sample-smart-contract)
+* Import Blockchain Sample project into 'Smart Contracts'
 
-* [Deploy the smart contract onto the network](#3.-Get-the-Fabcar-sample-smart-contract)
+* Start up the Blockchain Network
 
-* [Export Profiles](#5.Export-Profiles)
+* Export Profiles
 
-* [Start up Open Liberty server](#6.-Start-up-the-Open-Liberty-Server)
+* Start up Open Liberty server
 
-* [Query all items from the ledger](#7.-Query-what-is-already-on-the-ledger:)
+* Query all items from the ledger
 
-* [Query specific items from the ledger](#8.-Query-specific-car-on-the-ledger:)
+* Query specific items from the ledger
 
-* [Add Cars to the ledger.](#9.-Add-a-car-to-the-ledger:)
+* Add Cars to the ledger.
 
-* [10 Update owner of Car in Ledger](#10.-Update-owner-of-Car-in-Ledger)
+* 10 Update owner of Car in Ledger
 
-* [Stop the Open Liberty server](#11.-Stop-the-Open-Liberty-Server)
+* Stop the Open Liberty server
 
-* [Stop the Blockchain Network](#12.-Stop-and-tear-down-the-Blockchain-Network)
+* Stop the Blockchain Network
 
-* [Finished](#Finished)
+* Finished
 
 
-## 1. Get the Dev Tools
+## 1. Get the Development Tools
 
-### Blockchain Dev Tool
-1. If you dont already, [Install Visual Studio Code.](https://code.visualstudio.com/download) 
-2. Go to the extensions Marketplace and search for [IBM Blockchain](https://marketplace.visualstudio.com/items?itemName=IBMBlockchain.ibm-blockchain-platform)
-3. Install the IBM Blockchain Platform extension
-4. After installation, if you need any additional pre-reqs, the extension will guide you through installing them. Make sure you pick up the Docker pre-reqs, as they'll be used to create your Fabric network
+i. If you dont already, [Install Visual Studio Code.](https://code.visualstudio.com/download) 
 
-### Open Liberty Dev Tool
+### Install IBM Blockchain Platform VS Code Extension
 
-1. Go to the extensions Marketplace on VS code and search for "Open Liberty Dev Dashboard"
-2. Install the [Open Liberty Dev Dashboard plugin](https://marketplace.visualstudio.com/items?itemName=Open-Liberty.liberty-dev-vscode-ext)
+ii. Go to the extensions Marketplace and search for [IBM Blockchain](https://marketplace.visualstudio.com/items?itemName=IBMBlockchain.ibm-blockchain-platform)
 
-## 2. Add local fabric environment and start up Blockchain
+iii. Install the IBM Blockchain Platform extension
 
-1. Go to the "IBM Blockchain Platform" view in VS Code by clicking the IBP icon
-2. Hover over the "Fabric Environments" section title and click the + icon
-3. Choose "Add a new local network (from template)"
-4. Choose the 2 Org template
-5. Wait for your network to spin up!
+iv. After installation, if any additional pre requesits are needed, the extension will guide you through installing them. Make sure you pick up the Docker pre requesits, as they'll be used to create your Fabric network
 
-## 3. Get the Fabcar sample smart contract
+### Install Open Liberty VS Code Extension
 
-1. Make your way back to the IBM Blockchain Platform homepage on VS Code. This can be done by clicking the IBP icon 
+i. Install the [Open Liberty Dev Dashboard plugin](https://marketplace.visualstudio.com/items?itemName=Open-Liberty.liberty-dev-vscode-ext)
+
+## 2. Add the Open Liberty client into VS code
+
+i. Open up a terminal window and `clone` the sample project:
+
+`git clone https://github.com/tomjenningss/Open-Liberty-Blockchain.git`
+
+ii. Add the current project to VS code:
+
+`File -> Open` `Open-Liberty-Blockchain` and click `open`
+
+This will add the project to the workspace and will automatically add `Liberty Dev Dashboard` into the VS code extension.
+
+## 3. Import Blockchain Sample project into 'Smart Contracts'
+
+### Add Fabcar Sample project into VS Code and Package the 'Open Project'
+
+i. Click on the IBP icon in the top right hand corner. (It may take a moment, in the purple bar at the bottom it will say activating extension) 
 
 <img src="images/blockchainlogo.png" alt="drawing" width="200">
 
-2. Pick FabCar from the `explore sample code` section.
+ii. Pick FabCar from the `explore sample code` section.
 
-3. Click the clone button to git clone the sample code for the FabCar sample
+iii. Click the clone button to git clone the sample code for the FabCar sample. Choose a convenient location to clone the fabric sample. 
+
+iv. Press `Clone repository`
 
 <img src="images/Fabcarsample-repo.png" alt="drawing" width="400">
 
-4. You can pick whichever language you prefer to open the smart contract in however, because Open Liberty is a Java application server choose Java
+v.  From the list of options choose `FabCar v1.0.0 Java`
+
+Click on `Open Locally` and in the Command Pallette click `Add to workspace`. 
 
 <img src="images/openlocally.png" alt="drawing" width="400">
 
-This is a pre-configured smart contract already for you. Clone the Github repository for the `Java` `Fabcar` smart contract sample
+vi. (Optional...) Press on the file explorer button in the top left 
 
-## 4. Deploy the smart contract onto the network
+You will see `fabcar-contract-java` this is the project to create the blockchain network
 
-1. Connect to the Fabric Environment you created earlier
-2. Under Smart Contracts > Instantiated, click `+Instantiate`
-3. Choose the folder you cloned from GitHub
-4. If asked which peers to install on, pick them all
-5. Accept the defaults on any other prompts (most things can be left blank and just hit Enter for a simple deployment like this)
+vii. Navigate back to the IBM Blockchain Platform VS Code extension by clicking on the Blockchain logo on the left handside. 
+
+viii. Under `Smart Contracts` click on `...` 
+
+ix. As the project is in your VS Code workspace, click on `Package Open Project`
+
+x. You will be prompted to `Enter a name for your Java Package`
+
+Call it `fabcar` and press enter
+
+xi. Then you will be prompted to `Enter a version for your Java package`
+
+Call it `1.0.0`
+
+Well done you have succesfully imported and packaged `fabcar@1.0.0` into `SMART CONTRACTS`.
+
+## 4. Start up the Blockchain Network
+
+i. Under Fabric Environments press on `Local Fabric o (click to start)` 
+
+This will start up docker containers and configure start up the blockchain network. The first time take 3-5 minutes, as it pulls down the Docker images starts the containers up and configures the Blockchain network.
+
+ii. Install Fabcar into the Environments Smart contract
+
+Under `Smart Contracts` > `Installed`, click `+Install`
+
+Choose `fabcar-contract-java Open Project`
+
+iii. Under `Smart Contracts` > Instantiated, click `+Instantiate`
+
+Choose `fabcar@1.0.0`
+
+iv. For this tutorial no optional features are needed
+
+`Optional functions` will appear, press `enter` to skip
+
+v. As well, you don't need any private data configuration files
+
+`Do you want to provide a private data collection configuration file`
+
+Select `no`
+
+In the notification window at the bottom left it will say `IBM Blockchain Platform Extension: Instantiating Smart Contract`
+
+This will take approximatly 2-5 minutes to instantiate the smart contract. 
 
 
 ## 5. Export Profiles
 
-For Open Liberty to communicate to the Blockchain Network, Hyperledger Fabric has security features, which stop applications attempting to make transactions unless you have the specific Profiles.
+For Open Liberty to communicate to the Blockchain Network, Hyperledger Fabric has security features, which stop applications attempting to make transactions unless you have the specific Profiles and certificate authorities.
 
-Export the `Local Fabric Gateways` to do this right click on `1 org local fabric - org 1` and export and click Export connection profile. The `finder` window will open and save the `json` file as `1-Org-Local-Fabric-Org1_connection.json` in the `target/liberty/wlp/usr/servers/defaultServer` directory.
+i. Export the `Local Fabric Gateways` 
 
-Export the `Fabric Wallets` by clicking on the `1 Org Local Fabric - Orderer Wallet` and right clicking the Export Wallet. Save the folder as `wallet` in the `target/liberty/wlp/usr/servers/defaultServer` directory.
+Hover over `FABRIC GATEWAYS` heading and click on `...` and `Export connection profile `
+
+<img src="images/export-fab-gateway.png" alt="drawing" width="400">
+
+The `finder` window will open and navigate to `Open-Liberty-Blockchain/OL-Blockchain/target/liberty/wlp/usr/servers/defaultServer` directory 
+ 
+Save the `.json` file as `1-Org-Local-Fabric-Org1_connection.json`
+
+ii. Export the `Fabric Wallets` 
+
+Click on `1 Org Local Fabric - Orderer Wallet` and right click Export Wallet. 
+
+<img src="images/export-fab-gateway.png" alt="drawing" width="400">
+
+iii. Save the folder as `wallet` in `Open-Liberty-Blockchain/OL-Blockchain/target/liberty/wlp/usr/servers/defaultServer` directory.
 
 ## 6. Start up the Open Liberty Server
 
-As we installed the `Dev Tool` for Open Liberty click on the `Liberty Dev Dashboard` icon and the extension will display the project. As the `artifact-Id` specified in the `pom.xml` where our server retrieves the dependincies for the server to run, it is called `ol-blockchainv` 
+i. As we installed the `Dev Tool` for Open Liberty click on the `Liberty Dev Dashboard` icon and the extension will display the project.  `ol-blockchain` 
 
-<img src="images/application-server.png" alt="drawing" width="400">
+ii. Right click on `OL-blockchain` and hit `Start`. This will start the application server up very quickly. Usually within 2 - 5 seconds!
 
-Right click on `application-server` and hit `Start`. This will start the application server up very quickly. Usually within 2 - 5 seconds!
+<img src="images/start-server.png" alt="drawing" width="400"> 
 
-<img src="images/start-server.png" alt="drawing" width="400">
+The server will usually start approximatly in 4-12 seconds.
 
-The server has started in `Development mode` meaning it will show the command line and if you hit `enter` it will run tests onto the Server on demand.
-
+<img src="images/defaultServer.png" alt="drawing" width="400"> 
 
 ## 7. Query what is already on the ledger:
 
-Open Liberty uses Microprofile and one of the features we are showing off is MicroProfile Open API. Providing a GUI and buttons, means there is no need for the command line anymore to execute HTTP Methods such as POST, GET and PUT! In the example you will use all three.
+One of the features we are showing off is MicroProfile Open API. You will be able to execute HTTP Methods such as POST, GET and PUT. You will use all three in the example.
 
 Open up a web-browser such as Chrome, and go to:
 
