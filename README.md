@@ -27,23 +27,23 @@ You can find out more [openliberty.io](https://openliberty.io/)
 
 * Get the Dev Tools
 
-* Add the Open Liberty client into VS code
+* Import Open Liberty project into VS code
 
-* Import Blockchain Sample project into 'Smart Contracts'
+* Import the sample Blockchain project into 'Smart Contracts'
 
-* Start up the Blockchain Network
+* Start Blockchain Network
 
 * Export Profiles
 
 * Start up Open Liberty server
 
-* Query all items from the ledger
+* Query all items on the ledger
 
-* Query specific items from the ledger
+* Query specific items on the ledger
 
 * Add Cars to the ledger.
 
-* 10 Update owner of Car in Ledger
+* 10 Update the owner of a Car on the Ledger
 
 * Stop the Open Liberty server
 
@@ -68,7 +68,7 @@ iv. After installation, if any additional pre requesits are needed, the extensio
 
 i. Install the [Open Liberty Dev Dashboard plugin](https://marketplace.visualstudio.com/items?itemName=Open-Liberty.liberty-dev-vscode-ext)
 
-## 2. Add the Open Liberty client into VS code
+## 2. Import the Open Liberty project into VS code
 
 i. Open up a terminal window and `clone` the sample project:
 
