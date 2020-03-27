@@ -112,9 +112,11 @@ viii. Under `Smart Contracts` click on `...`
 
 ix. As the project is in your VS Code workspace, click on `Package Open Project`
 
+<img src="images/package-project.png" alt="drawing" width="400"> 
+
 x. You will be prompted to `Enter a name for your Java Package`
 
-Call it `fabcar` and press enter
+Call it `fabcar` and press `enter`
 
 xi. Then you will be prompted to `Enter a version for your Java package`
 
