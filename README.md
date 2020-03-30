@@ -156,7 +156,7 @@ Select `no`
 
 In the notification window at the bottom left it will say `IBM Blockchain Platform Extension: Instantiating Smart Contract`
 
-This will take approximatly 2-5 minutes to instantiate the smart contract. 
+This will take approximately 2-5 minutes to instantiate the smart contract. 
 
 
 ## 5. Export Profiles
@@ -195,7 +195,7 @@ ii. Right click on `OL-blockchain` and hit `Start`. This will start the applicat
 
 <img src="images/start-server.png" alt="drawing" width="400"> 
 
-The server will usually start approximatly in 4-12 seconds.
+The server will usually start approximately in 4-12 seconds.
 
 <img src="images/defaultServer.png" alt="drawing" width="400"> 
 
@@ -209,12 +209,12 @@ Open up a web-browser such as Chrome, and go to:
 
 This will display all the possible operations you can do to the blockchain network. 
 
-The OpenAPI feature shows off which HTTP response is being showcased. Quering all cars on the ledger is a `GET` request. 
+The OpenAPI feature shows off which HTTP response is being showcased. Querying all cars on the ledger is a `GET` request. 
 
 <img src="images/openAPIUI.png" alt="drawing" width="800">
 
 
-If you are keen you can see the output on the terminal window in VS Code, where its the same output. This is useful to see if it hasn't worked you can see the `stack trace` with an error on why it hasnt worked.
+If you are keen you can see the output on the terminal window in VS Code, where its the same output. This is useful to see if it hasn't worked, you can see the `stack trace` with an error on why it hasn't worked.
 
 Navigate to `GET /System​/Resources​/Cars Returns all cars`, 
 
@@ -222,7 +222,7 @@ Navigate to `GET /System​/Resources​/Cars Returns all cars`,
 
 It will send a request to the Ledger and return back all cars.
 
-Successful response should look like:
+A successful response should look like:
 
 ```json
 Queried all Cars Successfully.
@@ -254,7 +254,7 @@ Navigate to
 
 `POST /System​/Resources​/Car Add a car to the ledger`
 
- click on `Try it out`. 
+ Click on `Try it out`. 
 
 Fill in the `example schema` in with values. 
 
@@ -266,7 +266,7 @@ Navigate to
 
 `PUT /System​/Resources​/Car Update owner of a car in the ledger`
 
- click on `Try it out`. 
+ Click on `Try it out`. 
 
 Fill in the `example schema` in with values. 
 
@@ -282,11 +282,11 @@ i. Navigate to `https://localhost:9443/metrics/application`
 
 ii. Authentication to view the metrics is required when prompted the `username` and `password` is:
 
-Username: `admin`
+username: `admin`
 
 password: `adminpwd`
 
-Within the code the `@Timed` annotation is implemented so that when a transaction is executed a timer starts. 
+Within the code the `@Timed` annotation is implemented so that when a transaction is executed, a timer starts. 
 
 ii. This is useful to see as you can see how fast it takes to `QueryAllCars` and retrieve the cars from the blockchain network.
 
@@ -294,7 +294,7 @@ ii. This is useful to see as you can see how fast it takes to `QueryAllCars` and
 
 The list tells you a summary for example: `application_QueryCarsProcessingTime_seconds_count{method="GET"} 2` means that the `GET` method has been called twice and the time it takes in `seconds` to execute the transaction is below it.
 
-You can view the other ones under the summary sections with the metrics under the `# Help` summarys:
+You can view the other ones under the summary sections with the metrics under the `# Help` summaries:
 For example:
 
 `# HELP application_UpdateCarProcessingTime_seconds Time needed to update car in the inventory`
@@ -302,7 +302,7 @@ For example:
 
 ## 12. Stop the Open Liberty Server
 
-Once you have finished, go back to VS Code, Liberty Dev Dashboard, and press `Stop`. This will stop the Open Liberty Server. Now the server is not on, the application is not running anymore, meaning if you tried to go hit one of the end points, it wouldn't find it.
+Once you have finished, go back to VS Code, Liberty Dev Dashboard, and press `Stop`. This will stop the Open Liberty Server. Now the server is not on, the application is not running anymore, meaning if you tried to go hit one of the endpoints, it wouldn't find it.
 
 ## 13. Tear down the Blockchain Network
 
