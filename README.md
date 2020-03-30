@@ -2,7 +2,7 @@
 
 >Hyperledger Fabric sample using Open Liberty to execute transactions with IBM Blockchain Platform
 
-This tutorial introduces Open Liberty, a lightweight open source application server making REST requests to a blockchain network. You’ll discover exactly what `blockchain` is by implementing a `local fabric network` from scratch. All done by using the Blockchain and Open Liberty plugins all from VS code.
+This tutorial introduces [Open Liberty](https://openliberty.io), a lightweight open source cloud-native Java runtime making REST requests to a blockchain network. You’ll discover exactly what `blockchain` is by implementing a `local fabric network` from scratch. All done by using the Blockchain and Open Liberty plugins all from VS code.
 
 You’ll be able to execute different HTTP Methods for different transactions from the Open Liberty server, and the blockchain network will return a response to the web browser. Experiencing how easy it is to start up a Blockchain Network as well as see how fast Open Liberty starts up as an application server. Also seeing experiencing some of the cool features included in Open Liberty for free!
 
