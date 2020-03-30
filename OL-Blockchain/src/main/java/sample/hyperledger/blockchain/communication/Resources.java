@@ -5,6 +5,7 @@
 
 package sample.hyperledger.blockchain.communication;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -32,6 +33,9 @@ import sample.hyperledger.blockchain.model.*;
 @ApplicationScoped
 public class Resources {
 	
+	//set this for the location of the wallet directory and the connection json file
+	static String pathRoot = "/Users/Shared/FabConnection/";
+	
 	static {
 		System.setProperty("org.hyperledger.fabric.sdk.service_discovery.as_localhost", "true");
 	}
@@ -52,13 +56,13 @@ public class Resources {
 			)
 	{
 		try {
-			Path walletPath = Paths.get("wallet");
+			Path walletPath = Paths.get(pathRoot + "wallet");
 			Wallet wallet = Wallet.createFileSystemWallet(walletPath);
 			
 			// load a CCP
 			//expecting the connect profile json file; export the Connection Profile from the
 			//fabric gateway and add to the default server location 
-			Path networkConfigPath = Paths.get("1-Org-Local-Fabric-Org1_connection.json");
+			Path networkConfigPath = Paths.get(pathRoot + "1-Org-Local-Fabric-Org1_connection.json");
 			
 			Gateway.Builder builder = Gateway.createBuilder();
 			
@@ -74,11 +78,20 @@ public class Resources {
 				return new Car(aCar.getMake(), aCar.getModel(), aCar.getColour(), aCar.getOwner(), aCar.getKey());
 			}
 			catch (Exception e){
+				System.out.println("Unable to get network/contract and execute query"); 
 				throw new javax.ws.rs.ServiceUnavailableException();
 			}
 		} 
 		catch (Exception e2) 
 		{
+			String current;
+			try {
+				current = new java.io.File( "." ).getCanonicalPath();
+				System.out.println("Current working dir: "+current);
+			} catch (IOException e) {
+				throw new javax.ws.rs.ServiceUnavailableException();
+			}
+			System.out.println("Unable to find config or wallet - please check the wallet directory and connection json"); 
 			throw new javax.ws.rs.ServiceUnavailableException();
 		}	
 	}
@@ -99,13 +112,13 @@ public class Resources {
 			)
 	{
 		try {
-			Path walletPath = Paths.get("wallet");
+			Path walletPath = Paths.get(pathRoot + "wallet");
 			Wallet wallet = Wallet.createFileSystemWallet(walletPath);
 			
 			// load a CCP
 			//expecting the connect profile json file; export the Connection Profile from the
 			//fabric gateway and add to the default server location 
-			Path networkConfigPath = Paths.get("1-Org-Local-Fabric-Org1_connection.json");
+			Path networkConfigPath = Paths.get(pathRoot + "1-Org-Local-Fabric-Org1_connection.json");
 			
 			Gateway.Builder builder = Gateway.createBuilder();
 			
@@ -121,11 +134,20 @@ public class Resources {
 				return new Car(aCar.getMake(), aCar.getModel(), aCar.getColour(), aCar.getOwner(), aCar.getKey());
 			}
 			catch (Exception e){
+				System.out.println("Unable to get network/contract and execute query"); 
 				throw new javax.ws.rs.ServiceUnavailableException();
 			}
 		} 
 		catch (Exception e2) 
 		{
+			String current;
+			try {
+				current = new java.io.File( "." ).getCanonicalPath();
+				System.out.println("Current working dir: "+current);
+			} catch (IOException e) {
+				throw new javax.ws.rs.ServiceUnavailableException();
+			}
+			System.out.println("Unable to find config or wallet - please check the wallet directory and connection json"); 
 			throw new javax.ws.rs.ServiceUnavailableException();
 		}	
 	}
@@ -149,13 +171,13 @@ public class Resources {
 		String passedOutput = "";
 		
 		try {
-			Path walletPath = Paths.get("wallet");
+			Path walletPath = Paths.get(pathRoot + "wallet");
 			Wallet wallet = Wallet.createFileSystemWallet(walletPath);
 			
 			// load a CCP
 			//expecting the connect profile json file; export the Connection Profile from the
 			//fabric gateway and add to the default server location 
-			Path networkConfigPath = Paths.get("1-Org-Local-Fabric-Org1_connection.json");
+			Path networkConfigPath = Paths.get(pathRoot + "1-Org-Local-Fabric-Org1_connection.json");
 			
 			Gateway.Builder builder = Gateway.createBuilder();
 			
@@ -173,16 +195,25 @@ public class Resources {
 				return passedOutput;
 			}
 			catch (Exception e){
+				System.out.println("Unable to get network/contract and execute query"); 
 				throw new javax.ws.rs.ServiceUnavailableException();
 			}
 		} 
 		catch (Exception e2) 
 		{
+			String current;
+			try {
+				current = new java.io.File( "." ).getCanonicalPath();
+				System.out.println("Current working dir: "+current);
+			} catch (IOException e) {
+				throw new javax.ws.rs.ServiceUnavailableException();
+			}
+			System.out.println("Unable to find config or wallet - please check the wallet directory and connection json"); 
 			throw new javax.ws.rs.ServiceUnavailableException();
 		}
 	}
 	
-	@Timed(name = "QueryCaraProcessingTime",
+	@Timed(name = "QueryCarsProcessingTime",
 	         tags = {"method=GET"},
 	         absolute = true,
 	         description = "Time needed to query all cars")
@@ -199,32 +230,25 @@ public class Resources {
 		String passedOutput = "";
 		
 		try {
-			Path walletPath = Paths.get("wallet");
+			Path walletPath = Paths.get(pathRoot + "wallet");
 			Wallet wallet = Wallet.createFileSystemWallet(walletPath);
 			
-			String current = new java.io.File( "." ).getCanonicalPath();
-	        System.out.println("Current dir:"+current);
-	        
 			// load a CCP
 			//expecting the connect profile json file; export the Connection Profile from the
 			//fabric gateway and add to the default server location 
-			Path networkConfigPath = Paths.get("1-Org-Local-Fabric-Org1_connection.json");
-			System.out.println("networkConfigPath found"); 
+			Path networkConfigPath = Paths.get(pathRoot + "1-Org-Local-Fabric-Org1_connection.json");
 			Gateway.Builder builder = Gateway.createBuilder();
 			
 			//expecting wallet directory within the default server location
 			//wallet exported from Fabric wallets Org 1
 			builder.identity(wallet, "org1Admin").networkConfig(networkConfigPath).discovery(true);
-			System.out.println("Wallet found"); 
+			
 			try (Gateway gateway = builder.connect()) {
 				
 				// get the network and contract
 				Network network = gateway.getNetwork("mychannel");
-				System.out.println("gateway.getNetwork done"); 
 				Contract contract = network.getContract("fabcar");
-				System.out.println("contract.getContract done"); 
 				result = contract.evaluateTransaction("queryAllCars");
-				System.out.println("got result"); 
 				outputString = new String(result);
 				passedOutput = "Queried all Cars Successfully. \nCars are:\n " + outputString;	
 				return passedOutput;
@@ -236,7 +260,14 @@ public class Resources {
 		} 
 		catch (Exception e2) 
 		{
-			System.out.println("Unable to find config or wallet"); 
+			String current;
+			try {
+				current = new java.io.File( "." ).getCanonicalPath();
+				System.out.println("Current working dir: "+current);
+			} catch (IOException e) {
+				throw new javax.ws.rs.ServiceUnavailableException();
+			}
+			System.out.println("Unable to find config or wallet - please check the wallet directory and connection json"); 
 			throw new javax.ws.rs.ServiceUnavailableException();
 		}
 	}
