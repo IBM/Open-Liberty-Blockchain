@@ -45,7 +45,9 @@ Liberty features include [Jakarta EE](http://jakarta.ee), [Java EE](https://orac
 
 * Add Cars to the ledger.
 
-* 10 Update the owner of a Car on the Ledger
+* Update the owner of a Car on the Ledger
+
+* Optional - View Open Liberty Metrics
 
 * Stop the Open Liberty server
 
@@ -278,7 +280,13 @@ A useful additional MicroProfile feature that is implemented is to view the metr
 
 i. Navigate to `https://localhost:9443/metrics/application` 
 
-Within the code a `@Timed` annotation is implemented so that when a transaction is executed a timer starts. 
+ii. Authentication to view the metrics is required when prompted the `username` and `password` is:
+
+Username: `admin`
+
+password: `adminpwd`
+
+Within the code the `@Timed` annotation is implemented so that when a transaction is executed a timer starts. 
 
 ii. This is useful to see as you can see how fast it takes to `QueryAllCars` and retrieve the cars from the blockchain network.
 
