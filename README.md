@@ -2,9 +2,15 @@
 
 >Hyperledger Fabric sample using Open Liberty to execute transactions with IBM Blockchain Platform
 
-This tutorial introduces [Open Liberty](https://openliberty.io), a lightweight, open source cloud-native Java runtime that makes REST requests to a blockchain network. Through this tutorial, you will discover what `blockchain` is, by implementing a `local fabric network` from scratch— using both the Blockchain and Open Liberty plugins, all from VS code.
+In this tutorial, you will learn to:
+* Install IBM's VS Code extension for Liberty and blockchain development
+* Use the IBM Blockchain Platform extension to create a local blockchain network and deploy a sample smart contract (based on cars)
+* Use the [Open Liberty](https://openliberty.io) extension to start a web server that can communicate with your blockchain network
+* Transact on the blockchain network from the web server via REST APIs
 
-You will be able to execute different HTTP Methods for various transactions from the Open Liberty server, and the blockchain network will return a response to the web browser. As a result, you will experience how easy it is to start up a Blockchain Network, as well as how promptly Open Liberty starts up as an application server. All while experiencing some of the great features included free within Open Liberty.
+This tutorial shows how a blockchain network can be used to store data, whilst a client application sitting outside the blockchain network interacts with the data, querying and updating it. This is a common pattern in most blockchain projects, and Open Liberty makes it easy to achieve.
+
+You will be able to execute different HTTP Methods for various transactions from the Open Liberty server, and the blockchain network will return a response to the web browser. As a result, you will experience how easy IBM's developer tools make it to start up a blockchain network, as well as how promptly Open Liberty starts up as an application server. All while experiencing some of the great features included free within Open Liberty.
 
 ## Prerequisites:
 
@@ -16,9 +22,13 @@ You will be able to execute different HTTP Methods for various transactions from
 
 ## What is “Blockchain”?
 
-Ultimately, 'blockchain' is a means of storing digital data. This data can be anything. For Bitcoin, it is the transactions (logs of transfers of Bitcoin from one account to another), but it could even be files; it does not matter. The data is stored in the form of blocks, which are linked (or chained) together using cryptographic hashes — hence the name 'blockchain.'
+Blockchain is a technology used to achieve a shared, immutable ledger between multiple parties. Some types of blockchain are open to anyone (e.g. Ethereum main-net or Bitcoin), but many blockchain use cases require a network with access restricted to known entities.
 
-In this instance, cars are used, and they will be added to the blockchain as transactions are made to the ledger.
+When multiple companies would benefit from having the exact same data, but it's _not_ appropriate to agree that one of them owns a single master-copy, a permissioned blockchain like Hyperledger Fabric is a good solution. IBM Blockchain Platform developer tools and other offerings use Hyperledger Fabric as the underlying blockchain technology.
+
+In this example, a simple sample `network` and `smart contract` will be used: 
+* The example network only has a single member and will run on your laptop: in a real scenario there would be multiple members, and you would use a service like [IBM Blockchain Platform](https://www.ibm.com/uk-en/cloud/blockchain-platform) to run the network in containers or on a cloud platform.
+* The example smart contract is based on recording basic information about cars to a ledger.
 
 ## What is "Open Liberty"?
 
@@ -28,10 +38,9 @@ Liberty features include [Jakarta EE](http://jakarta.ee), [Java EE](https://orac
 
 ## Steps
 
-* Get the Dev Tools
-
-* Import Open Liberty project into VS code
-
+1. Get the Development Tools
+2. Import the Open Liberty project into VS Code
+3. Import the "fabcar" sample smart contract project into VS Code
 * Import the sample Blockchain project into 'Smart Contracts'
 
 * Start Blockchain Network
@@ -85,7 +94,7 @@ ii. Add the current project to VS Code:
 
 This will add the project to the workspace and will automatically add `Liberty Dev Dashboard` into the VS Code extension.
 
-## 3. Import Blockchain Sample project into 'Smart Contracts'
+## 3. Import the "fabcar" sample smart contract project into VS Code
 
 ### Add Fabcar Sample project into VS Code and Package the 'Open Project'
 
@@ -111,49 +120,34 @@ vi. Optional: Press on the file explorer button in the top left.
 
 You will see `fabcar-contract-java` this is the project to create the blockchain network.
 
-vii. Navigate back to the IBM Blockchain Platform VS Code extension by clicking on the Blockchain logo on the left hand side. 
+vii. Navigate back to the IBM Blockchain Platform VS Code extension by clicking on the Blockchain logo on the left hand side, ready for the next part of the tutorial.
 
-viii. Under `Smart Contracts` click on `...` 
-
-ix. As the project is in your VS Code workspace, click on `Package Open Project.`
-
-<img src="images/package-project.png" alt="drawing" width="400"> 
-
-x. You will be prompted to `Enter a name for your Java Package.`
-
-Call it `fabcar` and press `enter`
-
-xi. Then you will be prompted to `Enter a version for your Java package`
-
-Call it `1.0.0`
-
-Well done, you have successfully imported and packaged `fabcar@1.0.0` into `SMART CONTRACTS`.
 
 ## 4. Startup the Blockchain Network
 
-i. Under Fabric Environments press on `Local Fabric o (click to start)`.
+i. Under `FABRIC ENVIRONMENTS` press on `1 Org Local Fabric o (click to start)`.
+   
+   This will start up docker containers and configure the startup of the blockchain network. The first time will take approximately 3-5 minutes, as it pulls down the Docker images, starts the containers up and configures the Blockchain network.
 
-This will start up docker containers and configure the startup of the blockchain network. The first time will take approximately 3-5 minutes, as it pulls down the Docker images, starts the containers up and configures the Blockchain network.
+ii. Once you're connected to the "Local Fabric" environment (this happens automatically after it has started), under `Smart Contracts` > `Instantiated`, click `+Instantiate`
 
-ii. Install Fabcar into the Environments Smart contract.
+   Choose `fabcar-contract-java Open Project` (at the command-palette prompt)
 
-Under `Smart Contracts` > `Installed`, click `+Install`
+iii. You will be prompted to `Enter a name for your Java Package.`
 
-Choose `fabcar-contract-java Open Project`
+   Call it `fabcar` and press `enter`
 
-iii. Under `Smart Contracts` > Instantiated, click `+Instantiate`
+iv. Then you will be prompted to `Enter a version for your Java package`
 
-Choose `fabcar@1.0.0`
+   Call it `1.0.0`
 
-iv. For this tutorial, no optional features are needed.
+v. For this tutorial, no optional features are needed.
 
-`Optional functions` will appear, press `enter` to skip.
+   `Optional functions` will appear, press `enter` to skip.
 
-v. Also, you don't need any private data configuration files
+vi. Also, you don't need any private data configuration files
 
-When asked `Do you want to provide a private data collection configuration file`
-
-Select `no`
+   When asked `Do you want to provide a private data collection configuration file`, select `no`
 
 In the notification window at the bottom left it will say `IBM Blockchain Platform Extension: Instantiating Smart Contract`
 
@@ -166,7 +160,7 @@ For Open Liberty to communicate to the Blockchain Network, Hyperledger Fabric ha
 
 i. Export the `Local Fabric Gateways` 
 
-Hover over `FABRIC GATEWAYS` heading and click on `...` and `Export connection profile `
+In the `FABRIC GATEWAYS` panel, make sure you're connected to the gateway for the environment (`1 Org Local Fabric - Org1`), then hover over the `FABRIC GATEWAYS` heading, click on `...` and `Export connection profile `
 
 <img src="images/export-fab-gateway.png" alt="drawing" width="400">
 
@@ -182,7 +176,7 @@ Save the `.json` file as `1-Org-Local-Fabric-Org1_connection.json`
 
 ii. Export the `Fabric Wallets` 
 
-Click on `1 Org Local Fabric - Org1 Wallet` and right click Export Wallet. 
+In the `FABRIC WALLETS` panel, click on `1 Org Local Fabric - Org1 Wallet` and right click Export Wallet. 
 
 <img src="images/export-fab-wallet.png" alt="drawing" width="400">
 
