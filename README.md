@@ -69,27 +69,27 @@ Liberty features include [Jakarta EE](http://jakarta.ee), [Java EE](https://orac
 
 ## 1. Get the Development Tools
 
-i. If you have not already, [Install Visual Studio Code.](https://code.visualstudio.com/download) 
+1. If you have not already, [Install Visual Studio Code.](https://code.visualstudio.com/download) 
 
 ### Install IBM Blockchain Platform VS Code Extension
 
-ii. Go to the VS Code Marketplace and search for [IBM Blockchain](https://marketplace.visualstudio.com/items?itemName=IBMBlockchain.ibm-blockchain-platform)
+2. Go to the VS Code Marketplace and search for [IBM Blockchain](https://marketplace.visualstudio.com/items?itemName=IBMBlockchain.ibm-blockchain-platform)
 
-iii. Install the IBM Blockchain Platform extension
+3. Install the IBM Blockchain Platform extension
 
-iv. After installation, if any additional prerequisites are needed, the extension will guide you through installing them. Make sure you pick up the Docker prerequisites, as they will be used to create your Fabric network
+4. After installation, if any additional prerequisites are needed, the extension will guide you through installing them. Make sure you pick up the Docker prerequisites, as they will be used to create your Fabric network
 
 ### Install Open Liberty VS Code Extension
 
-i. Install the [Open Liberty Dev Dashboard plugin](https://marketplace.visualstudio.com/items?itemName=Open-Liberty.liberty-dev-vscode-ext)
+5. Install the [Open Liberty Dev Dashboard plugin](https://marketplace.visualstudio.com/items?itemName=Open-Liberty.liberty-dev-vscode-ext)
 
 ## 2. Import the Open Liberty project into VS Code
 
-i. Open up a terminal window and `clone` the sample project:
+1. Open up a terminal window and `clone` the sample project:
 
 `git clone https://github.com/tomjenningss/Open-Liberty-Blockchain.git`
 
-ii. Add the current project to VS Code:
+2. Add the current project to VS Code:
 
 `File -> Open` `Open-Liberty-Blockchain` and click `open`
 
@@ -99,54 +99,54 @@ This will add the project to the workspace and will automatically add `Liberty D
 
 ### Add Fabcar Sample project into VS Code and Package the 'Open Project'
 
-i. Click on the IBP icon in the top right-hand corner (it may take a moment, and in the purple bar at the bottom it will say activating extension).
+1. Click on the IBP icon in the top right-hand corner (it may take a moment, and in the purple bar at the bottom it will say activating extension).
 
 <img src="images/blockchainlogo.png" alt="drawing" width="200">
 
-ii. Pick FabCar from the `explore sample code` section.
+2. Pick FabCar from the `explore sample code` section.
 
-iii. Click the clone button to git clone the sample code for the FabCar sample. Choose a convenient location to clone the fabric sample. 
+3. Click the clone button to git clone the sample code for the FabCar sample. Choose a convenient location to clone the fabric sample. 
 
-iv. Press `Clone repository.`
+4. Press `Clone repository.`
 
 <img src="images/Fabcarsample-repo.png" alt="drawing" width="400">
 
-v.  From the list of options choose `FabCar v1.0.0 Java.`
+5.  From the list of options choose `FabCar v1.0.0 Java.`
 
 Click on `Open Locally` and in the Command Palette click `Add to workspace`. 
 
 <img src="images/openlocally.png" alt="drawing" width="400">
 
-vi. Optional: Press on the file explorer button in the top left. 
+6. Optional: Press on the file explorer button in the top left. 
 
 You will see `fabcar-contract-java` this is the project to create the blockchain network.
 
-vii. Navigate back to the IBM Blockchain Platform VS Code extension by clicking on the Blockchain logo on the left hand side, ready for the next part of the tutorial.
+7. Navigate back to the IBM Blockchain Platform VS Code extension by clicking on the Blockchain logo on the left hand side, ready for the next part of the tutorial.
 
 
 ## 4. Start the blockchain network and deploy the contract
 
-i. Under `FABRIC ENVIRONMENTS` press on `1 Org Local Fabric o (click to start)`.
+1. Under `FABRIC ENVIRONMENTS` press on `1 Org Local Fabric o (click to start)`.
    
    This will start up docker containers and configure the startup of the blockchain network. The first time will take approximately 3-5 minutes, as it pulls down the Docker images, starts the containers up and configures the Blockchain network.
 
-ii. Once you're connected to the "Local Fabric" environment (this happens automatically after it has started), under `Smart Contracts` > `Instantiated`, click `+Instantiate`
+2. Once you're connected to the "Local Fabric" environment (this happens automatically after it has started), under `Smart Contracts` > `Instantiated`, click `+Instantiate`
 
    Choose `fabcar-contract-java Open Project` (at the command-palette prompt)
 
-iii. You will be prompted to `Enter a name for your Java Package.`
+3. You will be prompted to `Enter a name for your Java Package.`
 
    Call it `fabcar` and press `enter`
 
-iv. Then you will be prompted to `Enter a version for your Java package`
+4. Then you will be prompted to `Enter a version for your Java package`
 
    Call it `1.0.0`
 
-v. For this tutorial, no optional features are needed.
+5. For this tutorial, no optional features are needed.
 
    `Optional functions` will appear, press `enter` to skip.
 
-vi. Also, you don't need any private data configuration files
+6. Also, you don't need any private data configuration files
 
    When asked `Do you want to provide a private data collection configuration file`, select `no`
 
@@ -159,7 +159,7 @@ This will take approximately 2-5 minutes to instantiate the smart contract.
 
 For Open Liberty to communicate to the Blockchain Network, Hyperledger Fabric has security features, which stop applications attempting to make transactions unless you have the specific profiles and certificate authorities.
 
-i. Export the `Local Fabric Gateways` 
+1. Export the `Local Fabric Gateways` 
 
 In the `FABRIC GATEWAYS` panel, make sure you're connected to the gateway for the environment (`1 Org Local Fabric - Org1`), then hover over the `FABRIC GATEWAYS` heading, click on `...` and `Export connection profile `
 
@@ -175,19 +175,19 @@ Full path directory `Users/Shared/FabConnection`
 
 Save the `.json` file as `1-Org-Local-Fabric-Org1_connection.json`
 
-ii. Export the `Fabric Wallets` 
+2. Export the `Fabric Wallets` 
 
 In the `FABRIC WALLETS` panel, click on `1 Org Local Fabric - Org1 Wallet` and right click Export Wallet. 
 
 <img src="images/export-fab-wallet.png" alt="drawing" width="400">
 
-iii. Save the folder as `wallet` in `/Users/Shared/FabConnection/` directory.
+3. Save the folder as `wallet` in `/Users/Shared/FabConnection/` directory.
 
 ## 6. Start up the Open Liberty Server
 
-i. As we installed the `Dev Tool` for Open Liberty click on the `Liberty Dev Dashboard` icon and the extension will display the project.  `ol-blockchain` 
+1. As we installed the `Dev Tool` for Open Liberty click on the `Liberty Dev Dashboard` icon and the extension will display the project.  `ol-blockchain` 
 
-ii. Right click on `OL-blockchain` and hit `Start`. 
+2. Right click on `OL-blockchain` and hit `Start`. 
 
 <img src="images/start-server.png" alt="drawing" width="400"> 
 
@@ -199,7 +199,7 @@ This will start the application server up very quickly. Usually within 2 - 5 sec
 
 One of the features we are showing off is MicroProfile Open API. You will be able to execute HTTP Methods such as POST, GET and PUT. You will use all three in the example.
 
-i. Open up a web-browser such as Chrome, and go to:
+1. Open up a web-browser such as Chrome, and go to:
 
 `http://localhost:9080/openapi/ui/` 
 
@@ -212,7 +212,7 @@ The OpenAPI feature shows off which HTTP response is being showcased. Querying a
 
 If you are keen, you can see the output on the terminal window in VS Code, where it's the same output. This is useful to see if it has not worked, as you can see the `stack trace` error. 
 
-ii. Navigate to `GET /System/Resources/Cars Returns all cars`, 
+2. Navigate to `GET /System/Resources/Cars Returns all cars`, 
 
 `Try it out` 
 
@@ -230,7 +230,7 @@ Cars:
 
 As you can see, there is an ID for each item on the ledger. This is very useful if you want to query specific items on the ledger. To query specific cars on the ledger: 
 
-i. On the OpenAPI UI try out 
+1. On the OpenAPI UI try out 
 
 `GET /System/Resources/Car Returns an individual car by key`
 
@@ -250,7 +250,7 @@ Navigate to
 
 `POST /System/Resources/Car Add a car to the ledger`
 
-i. Click on `Try it out`. 
+1. Click on `Try it out`. 
 
 Fill in the `example schema` in with values. 
 
@@ -258,7 +258,7 @@ Fill in the `example schema` in with values.
 
 ## 10. Update owner of Car in Ledger:
 
-i. Navigate to:
+1. Navigate to:
 
 `PUT /System​/Resources​/Car Update owner of a car in the ledger`
 
@@ -274,9 +274,9 @@ You can monitor metrics to determine the performance of a service.
 
 A useful, additional MicroProfile feature implemented is to view the metrics for the time it takes to execute a transaction. 
 
-i. Navigate to `https://localhost:9443/metrics/application` 
+1. Navigate to `https://localhost:9443/metrics/application` 
 
-ii. Authentication to view the metrics is required when prompted the `username` and `password` is:
+2. Authentication to view the metrics is required when prompted the `username` and `password` is:
 
 username: `admin`
 
@@ -284,7 +284,7 @@ password: `adminpwd`
 
 Within the code the `@Timed` annotation is implemented so that when a transaction is executed, a timer starts. 
 
-ii. This is useful to see as you can see how fast it takes to `QueryAllCars` and retrieve the cars from the blockchain network.
+3. This is useful to see as you can see how fast it takes to `QueryAllCars` and retrieve the cars from the blockchain network.
 
 <img src="images/timed-function.png" alt="drawing" width="1000">   
 
