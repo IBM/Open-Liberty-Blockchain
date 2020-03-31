@@ -38,14 +38,15 @@ Liberty features include [Jakarta EE](http://jakarta.ee), [Java EE](https://orac
 
 ## Steps
 
-1. Get the Development Tools
-2. Import the Open Liberty project into VS Code
-3. Import the "fabcar" sample smart contract project into VS Code
-* Import the sample Blockchain project into 'Smart Contracts'
+* Get the Development Tools
 
-* Start Blockchain Network
+* Import the Open Liberty project into VS Code
 
-* Export Profiles
+* Import the "fabcar" sample smart contract project into VS Code
+
+* Start the blockchain network and deploy the contract
+
+* Export credentials to communicate with the blockchain network
 
 * Startup Open Liberty server
 
@@ -123,7 +124,7 @@ You will see `fabcar-contract-java` this is the project to create the blockchain
 vii. Navigate back to the IBM Blockchain Platform VS Code extension by clicking on the Blockchain logo on the left hand side, ready for the next part of the tutorial.
 
 
-## 4. Startup the Blockchain Network
+## 4. Start the blockchain network and deploy the contract
 
 i. Under `FABRIC ENVIRONMENTS` press on `1 Org Local Fabric o (click to start)`.
    
@@ -154,7 +155,7 @@ In the notification window at the bottom left it will say `IBM Blockchain Platfo
 This will take approximately 2-5 minutes to instantiate the smart contract. 
 
 
-## 5. Export Profiles
+## 5. Export credentials to communicate with the blockchain network
 
 For Open Liberty to communicate to the Blockchain Network, Hyperledger Fabric has security features, which stop applications attempting to make transactions unless you have the specific profiles and certificate authorities.
 
