@@ -59,7 +59,7 @@ public class Resources {
 			Path walletPath = Paths.get(pathRoot + "wallet");
 			Wallet wallet = Wallet.createFileSystemWallet(walletPath);
 			
-			// load a CCP
+			//load a CCP
 			//expecting the connect profile json file; export the Connection Profile from the
 			//fabric gateway and add to the default server location 
 			Path networkConfigPath = Paths.get(pathRoot + "1-Org-Local-Fabric-Org1_connection.json");
@@ -71,7 +71,7 @@ public class Resources {
 			builder.identity(wallet, "org1Admin").networkConfig(networkConfigPath).discovery(true);
 			try (Gateway gateway = builder.connect()) {
 				
-				// get the network and contract
+				//get the network and contract
 				Network network = gateway.getNetwork("mychannel");
 				Contract contract = network.getContract("fabcar");
 				contract.submitTransaction("createCar", aCar.getKey(), aCar.getMake(), aCar.getModel(), aCar.getColour(), aCar.getOwner());
@@ -115,7 +115,7 @@ public class Resources {
 			Path walletPath = Paths.get(pathRoot + "wallet");
 			Wallet wallet = Wallet.createFileSystemWallet(walletPath);
 			
-			// load a CCP
+			//load a CCP
 			//expecting the connect profile json file; export the Connection Profile from the
 			//fabric gateway and add to the default server location 
 			Path networkConfigPath = Paths.get(pathRoot + "1-Org-Local-Fabric-Org1_connection.json");
@@ -127,7 +127,7 @@ public class Resources {
 			builder.identity(wallet, "org1Admin").networkConfig(networkConfigPath).discovery(true);
 			try (Gateway gateway = builder.connect()) {
 				
-				// get the network and contract
+				//get the network and contract
 				Network network = gateway.getNetwork("mychannel");
 				Contract contract = network.getContract("fabcar");
 				contract.submitTransaction("changeCarOwner", aCar.getKey(), aCar.getOwner());
@@ -174,7 +174,7 @@ public class Resources {
 			Path walletPath = Paths.get(pathRoot + "wallet");
 			Wallet wallet = Wallet.createFileSystemWallet(walletPath);
 			
-			// load a CCP
+			//load a CCP
 			//expecting the connect profile json file; export the Connection Profile from the
 			//fabric gateway and add to the default server location 
 			Path networkConfigPath = Paths.get(pathRoot + "1-Org-Local-Fabric-Org1_connection.json");
@@ -186,7 +186,7 @@ public class Resources {
 			builder.identity(wallet, "org1Admin").networkConfig(networkConfigPath).discovery(true);
 			try (Gateway gateway = builder.connect()) {
 				
-				// get the network and contract
+				//get the network and contract
 				Network network = gateway.getNetwork("mychannel");
 				Contract contract = network.getContract("fabcar");
 				result = contract.evaluateTransaction("queryCar", Key);
@@ -233,7 +233,7 @@ public class Resources {
 			Path walletPath = Paths.get(pathRoot + "wallet");
 			Wallet wallet = Wallet.createFileSystemWallet(walletPath);
 			
-			// load a CCP
+			//load a CCP
 			//expecting the connect profile json file; export the Connection Profile from the
 			//fabric gateway and add to the default server location 
 			Path networkConfigPath = Paths.get(pathRoot + "1-Org-Local-Fabric-Org1_connection.json");
